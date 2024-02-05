@@ -1,0 +1,42 @@
+.container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.table-container {
+    width: 45%;
+}
+
+.styled-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.styled-table, .styled-table th, .styled-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.styled-table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: #4CAF50;
+    color: white;
+}
+
+.piechart-container {
+    width: 35%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.details-container {
+    width: 45%;
+}
+
+.details-heading {
+    margin-top: 20px;
+}
