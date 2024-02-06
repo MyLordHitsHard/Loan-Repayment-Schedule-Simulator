@@ -1,4 +1,4 @@
-// LoanDetailsContext.js
+
 import { createContext, useState } from 'react';
 
 export const LoanDetailsContext = createContext();

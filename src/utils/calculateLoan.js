@@ -23,7 +23,7 @@ function calculateLoan(paymentAmount, interestRate, loanTermYears, startDate) {
         remainingBalance -= monthlyPrincipal;
 
         monthlyBreakdown.push({
-            month: i+1,
+            date: currentDate.toLocaleDateString(),
             monthlyPayment: monthlyPayment.toFixed(2),
             monthlyPrincipal: monthlyPrincipal.toFixed(2),
             monthlyInterest: monthlyInterest.toFixed(2),

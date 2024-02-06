@@ -1,10 +1,18 @@
 .container {
     display: flex;
+    align-items: center;
     justify-content: space-around;
 }
 
 .table-container {
     width: 45%;
+    
+}
+
+.table-box {
+    overflow-x: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
 }
 
 .styled-table {
@@ -17,14 +25,27 @@
     padding: 8px;
 }
 
+.styled-table tr:hover {
+    cursor: pointer;
+    background-color: #f2f2f2;
+    color: black;
+}
+
 .styled-table th {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: center;
     background-color: #4CAF50;
-    color: white;
+    color: rgba(255, 255, 255, 0.87);
 }
 
+
+.pagination {
+    margin-top: 1rem;
+}
+.pagination-button:nth-child(2) {
+    margin-left: 0.5rem;
+}
 .piechart-container {
     width: 35%;
     display: flex;
@@ -34,9 +55,19 @@
 }
 
 .details-container {
-    width: 45%;
+    margin-top: 3rem;
+    display: flex;
+    justify-content: space-around;
 }
-
+.details {
+    justify-content: center;
+    /* align-items: center; */
+}
 .details-heading {
     margin-top: 20px;
+}
+
+.bar-graph {
+    width: 60%;
+    margin: 0 auto;
 }

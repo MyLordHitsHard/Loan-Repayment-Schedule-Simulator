@@ -5,7 +5,7 @@ function OutputTableHeading() {
     <>
         <thead>
             <tr>
-                <th>Month</th>
+                <th>Date</th>
                 <th>Monthly Payment</th>
                 <th>Monthly Principal</th>
                 <th>Monthly Interest</th>

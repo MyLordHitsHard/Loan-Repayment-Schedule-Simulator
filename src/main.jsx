@@ -2,15 +2,12 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
-import { LoanDetailsProvider } from './context/LoanDetailsContext.jsx'
-import { PieChartProvider } from './context/PieChartContext.jsx'
+import { Provider } from './providers/Provider'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <LoanDetailsProvider>
-      <PieChartProvider>
-        <App />
-      </PieChartProvider>
-    </LoanDetailsProvider>
+    <Provider>
+      <App />
+    </Provider>
   </React.StrictMode>,
 )
