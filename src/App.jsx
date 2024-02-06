@@ -8,13 +8,11 @@ function App() {
   const [breakdown, setBreakdown] = useState(null)
   const handleFormSubmit = (newBreakdown) => {
     setBreakdown(newBreakdown)
-    console.log(breakdown)
   }
 
   return (
     <>
       <Heading />
-      {console.log(breakdown)}
       <InputForm onSubmit={handleFormSubmit} />
       <OutputBreakdown key={Date.now()} breakdown={breakdown || {}} />
     </>

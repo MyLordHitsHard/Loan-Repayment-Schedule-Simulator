@@ -29,7 +29,9 @@ function BreakdownContainer({loanDetails, breakdown, showChart, currentPage, row
                     <div className="pagination">
                         <PaginationButtons handlepageChange={handlepageChange} />
                     </div>
-                    <ExcelExport data={loanDetails} />
+                    <div className="excel-export">
+                        <ExcelExport data={loanDetails} />
+                    </div>
                 </div>
                 <div className="piechart-container">
                     {showChart && pieChartData && <PaymentPieChart details={pieChartData} />}

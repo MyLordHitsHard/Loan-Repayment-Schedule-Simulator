@@ -73,9 +73,6 @@ function InputForm( {onSubmit}) {
                         onChange={e => setStartDate(e.target.value)}
                     />
                 </div>
-
-                {/* <button type="submit" className="btn btn-primary">Submit</button> */}
-
             </form>
 
         </div>

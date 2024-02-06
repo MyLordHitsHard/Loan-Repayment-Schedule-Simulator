@@ -35,7 +35,7 @@
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: center;
-    background-color: #4CAF50;
+    background-color: blue;
     color: rgba(255, 255, 255, 0.87);
 }
 
@@ -70,4 +70,28 @@
 .bar-graph {
     width: 60%;
     margin: 0 auto;
+}
+
+.excel-export {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+
+}
+
+
+@media (max-width: 600px) {
+    .container, .details-container {
+        display: block;
+    }
+
+    .table-container, .piechart-container, .bar-graph {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .table-box {
+        padding-left: 0;
+        padding-right: 0;
+    }
 }
