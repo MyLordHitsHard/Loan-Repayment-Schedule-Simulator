@@ -39,7 +39,7 @@ function BreakdownContainer({loanDetails, breakdown, showChart, currentPage, row
             </div>
             
             
-            <div className="details-container">
+            <div className="container details-container">
                 <div className='details'>
                     <Details breakdown={breakdown} loanDetails={loanDetails} />
                 </div>

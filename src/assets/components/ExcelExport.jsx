@@ -12,7 +12,7 @@ function ExcelExport({data}) {
 
     return (
         <div>
-            <button onClick={exportToExcel}>Export to Excel</button>
+            <button onClick={exportToExcel}><img src='../../xlsx.svg' width='50px'></img></button>
         </div>
     )
 }
