@@ -6,10 +6,61 @@
   text-align: center;
 }
 
+.container {
+  display: flex;
+  margin: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.container-card1, .container-card2 {
+  margin: 1rem;
+}
+
+.container-card1 {
+  width: 100%;
+}
+
+.container-card2 {
+  width: 70%;
+}
+
+.container2 {
+  display: flex;
+  margin: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.container-card3 {
+  height: 300px;
+  margin: 1rem;
+  width: 70%;
+}
+.container-accordion {
+  /* flex: column; */
+  margin: 1rem;
+
+}
+
 @media (max-width: 600px) {
   #root {
     max-width: 600px;
     color: #3c3e3f;
   }
+
+  .container {
+
+    flex-direction: column;
+  }
+  .container2 {
+
+    flex-direction: column;
+  }
+  .container-card1, .container-card2, .container-card3, .container-accordion {
+    width: 50%;
+  }
+
 }
+
 
