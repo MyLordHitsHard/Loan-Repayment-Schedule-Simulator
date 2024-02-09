@@ -45,20 +45,26 @@
 
 @media (max-width: 600px) {
   #root {
-    max-width: 600px;
+    max-width: 100%;
     color: #3c3e3f;
   }
 
   .container {
 
     flex-direction: column;
+    justify-content: center;
+    margin: 0;
   }
   .container2 {
 
     flex-direction: column;
+    justify-content: center;
+    margin: 0;
   }
   .container-card1, .container-card2, .container-card3, .container-accordion {
-    width: 50%;
+    margin: auto;
+    margin-bottom: 1rem;
+    width: 100%;
   }
 
 }
