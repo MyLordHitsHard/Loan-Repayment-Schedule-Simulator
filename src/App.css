@@ -15,14 +15,31 @@
 
 .container-card1, .container-card2 {
   margin: 1rem;
+  transition: width 3000s ease 5s;
 }
 
+.container-card1,
+.container-card1-short {
+  transition: width 3000s ease 5s;
+}
+
+.container-card1-short {
+  width: 70%; /* Define the short height */
+}
 .container-card1 {
   width: 100%;
 }
 
 .container-card2 {
   width: 70%;
+  opacity: 0;
+  transform: translateY(100%);
+  transition: opacity 3000s ease 5000s, transform 3000s ease 50000s;
+}
+
+.container-card2.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .container2 {

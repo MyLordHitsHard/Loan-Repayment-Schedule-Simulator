@@ -20,7 +20,7 @@ function App() {
   const [datevalue, setDateValue] = useState(dayjs())
   const [slidersData, setSlidersData] = useState([])
   const [currentPage, setCurrentPage] = useState(1);
-  // const [isCard1Updated, setIsCard1Updated] = useState(false);
+  const [showPieChart, setShowPieChart] = useState(false);
 
   // context constants
   const {loanDetails, setLoanDetails} = useContext(LoanDetailsContext)
@@ -35,7 +35,6 @@ function App() {
   useEffect(() => {
     import('./assets/components/silder/silders.json').then((data) => {
       setSlidersData(data.default);
-      console.log("test")
     });
   }, []);
 
@@ -53,49 +52,48 @@ function App() {
       setLoanDetails(newDetails);
       const calculatedLoan = calculateLoan(newDetails.loanAmount, newDetails.interestRate, newDetails.loanTerm, newDetails.startDate);
       setLoanOutput(calculatedLoan);
+      setShowPieChart(newDetails.loanAmount !== 0 && newDetails.interestRate !== 0 && newDetails.loanTerm !== 0);
     }
-    
+
 }, [slidersData, datevalue, setLoanDetails, setLoanOutput]);
 
 
-  
   return (
 
     // main component
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      
-    <div className='container'>
-      {/* Card for Input details fields */}
-      <CardComp title="Input Details" classes='container-card1'> 
-        {
-          // Slider fields
-          slidersData.map((slider, index) => {
-            return <SliderComp key={index} {...slider} onChange={(newValue) => {
-              const newSlidersData = [...slidersData];
-              newSlidersData[index].value = newValue;
-              // setIsCard1Updated(true);
-              setSlidersData(newSlidersData);
-            }} />
-          })
-        }
-        {/* Date picker field */}
-        <DatePicker
-          value={datevalue} 
-          onChange={(newValue) => setDateValue(newValue)}
-          minDate={dayjs('2001-01-01')} 
-        />
-      </CardComp>
+      <div className='container'>
+        {/* Card for Input details fields */}
+        <CardComp title="Input Details" classes={showPieChart ? 'container-card1-short' : 'container-card1'}>
+          {/* Slider fields */}
+          {slidersData.map((slider, index) => (
+            <SliderComp
+              key={index}
+              {...slider}
+              onChange={(newValue) => {
+                const newSlidersData = [...slidersData];
+                newSlidersData[index].value = newValue;
+                setSlidersData(newSlidersData);
+              }}
+            />
+          ))}
+          {/* Date picker field */}
+          <DatePicker
+            value={datevalue}
+            onChange={(newValue) => setDateValue(newValue)}
+            minDate={dayjs('2001-01-01')}
+          />
+        </CardComp>
 
-      {/* Card for Pie Chart */}  
-      <CardComp title="Pie Chart" classes='container-card2'>
-        {loanOutput && <PaymentPieChart loanDetails={loanDetails} loanOutput={loanOutput} />}
-      </CardComp>
-    </div>
-      
+        {/* Card for Pie Chart */}
+        {showPieChart && (
+          <CardComp title="Pie Chart"  classes={`container-card2 ${showPieChart ? 'visible' : ''}`}>
+            {loanOutput && <PaymentPieChart loanDetails={loanDetails} loanOutput={loanOutput} />}
+          </CardComp>
+        )}
+      </div>
 
-    
-
-    <div className='container2'>
+      <div className='container2'>
         {/* Card for Output details */}
         <CardComp title="Output Details" classes="container-card3">
           <h3>Loan Amount</h3>
@@ -106,35 +104,28 @@ function App() {
           <h4>{loanOutput && loanOutput.reduce((acc, curr) => acc + parseFloat(curr.monthlyPayment), 0).toFixed(2)}</h4>
         </CardComp>
 
+        {/* Accordion for monthly payments only 5 rendered at first */}
+        <div className='container-accordion'>
+          {numberOfYears &&
+            [...Array(numberOfYears)].slice(0, accordionsToShow).map((_, yearIndex) => {
+              const isInitialYear = yearIndex === 0;
+              const isLastYear = yearIndex === numberOfYears - 1;
+              const monthInYear = isInitialYear ? 13 - datevalue.month() : isLastYear ? loanOutput.length % 12 : 12;
 
-      {/* Accordion for monthly payments only 5 rendered at first */}
-      <div className='container-accordion'>
-      { numberOfYears &&
-        [...Array(numberOfYears)].slice(0, accordionsToShow).map((_, yearIndex) => {
-          const isInitialYear = yearIndex === 0;
-          const isLastYear = yearIndex === numberOfYears - 1;
-          const monthInYear = isInitialYear ? 13 - datevalue.month() : isLastYear ? loanOutput.length % 12 : 12;
+              return (
+                <AccordionComp key={yearIndex} months={monthInYear} year={yearIndex + 1} data={loanOutput} />
+              )
+            })
+          }
 
-          return (
-            <AccordionComp key={yearIndex} months={monthInYear} year={yearIndex + 1} data={loanOutput}/>
-          )
-        })
-      }
-      
-      {/* Button to see more accordions */}
-      {numberOfYears > accordionsToShow && (
-        <button onClick={() => setCurrentPage(currentPage + 1)}>
-          Show More
-        </button>
-      )}
+          {/* Button to see more accordions */}
+          {numberOfYears > accordionsToShow && (
+            <button onClick={() => setCurrentPage(currentPage + 1)}>
+              Show More
+            </button>
+          )}
+        </div>
       </div>
-      
-    </div>
-      
-      
-      
-      
-      
     </LocalizationProvider>
   )
 }
